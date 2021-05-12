@@ -26,5 +26,12 @@ describe("date", function () {
             time.should.be.eq(time2);
         });
     });
+    describe("time utils ", function () {
+        it("should get last week", function () {
+            let lastWeek = index_1.date().getLastWeek();
+            let testWeek = index_1.date().utc().diff(index_1.date().utc().subtract(1, "week").startOf("week"), "hours");
+            lastWeek.should.be.eq(testWeek);
+        });
+    });
 });
 //# sourceMappingURL=unit.js.map
