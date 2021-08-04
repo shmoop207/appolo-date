@@ -54,7 +54,24 @@ export function getPastDays(option, dayjsClass: typeof Dayjs, dayjsFactory: type
     }
 }
 
+export function timeZoneUnix(option, dayjsClass: typeof Dayjs, dayjsFactory: typeof dayjs) {
+    dayjsClass.prototype.timeZoneUnix = function (this: Dayjs, timezone: string) {
+
+        return this.unix() + (this.tsZone(timezone) as any).utcOffset() * 60;
+    }
+}
+
+export function invertTimeZone(option, dayjsClass: typeof Dayjs, dayjsFactory: typeof dayjs) {
+    dayjsFactory.invertTimeZone = function (timezone: string) {
+        return timezone.includes('+') ? timezone.replace('+', '-') : timezone.replace('-', '+');
+
+    }
+}
+
 declare module 'dayjs' {
+
+    function invertTimeZone(timezone: string): string
+
     interface Dayjs {
         getPastDays(days: number, unit?: OpUnitType): number
 
@@ -63,6 +80,8 @@ declare module 'dayjs' {
         getCurrentMonth(unit?: OpUnitType): number
 
         getLastWeek(unit?: OpUnitType): number
+
+        timeZoneUnix(timezone?: string): number
 
         getCurrentWeek(unit?: OpUnitType): number
 

@@ -13,7 +13,7 @@ import {
     getCurrentWeek,
     getLastMonth,
     getLastWeek,
-    getPastDays
+    getPastDays, invertTimeZone, timeZoneUnix
 } from './plugins/timeUtils'
 
 dayjs.extend(relativeTime)
@@ -29,5 +29,7 @@ dayjs.extend(getCurrentWeek)
 dayjs.extend(getLastMonth)
 dayjs.extend(getLastWeek)
 dayjs.extend(getPastDays)
+dayjs.extend(timeZoneUnix)
+dayjs.extend(invertTimeZone)
 
 export const date = dayjs;

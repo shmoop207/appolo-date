@@ -20,6 +20,15 @@ describe("date", function () {
             let time2 = moment.tz.zone("Africa/Cairo").utcOffset(moment().unix()) / 60;
             time.should.be.eq(time2);
         });
+        it("should timeZoneUnix", async () => {
+            let time = index_1.date().timeZoneUnix("America/New_York");
+            let mom = moment();
+            let time2 = mom.unix() + moment.tz.zone("America/New_York").utcOffset(mom) * 60;
+            time.should.be.eq(time2);
+        });
+        it("should invertTimeZone", async () => {
+            index_1.date.invertTimeZone("Etc/GMT-12").should.be.eq("Etc/GMT+12");
+        });
         it("should get time add", async () => {
             let time = index_1.date().utc().add(1, "hour").unix();
             let time2 = moment.utc().add(1, "hour").unix();
