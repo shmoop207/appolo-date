@@ -8,20 +8,20 @@ let should = chai.should();
 describe("date", function () {
     describe("timezone ", function () {
         it("should get time with timezone", async () => {
-            let time = index_1.date().tz("America/New_York").startOf("minute").valueOf();
+            let time = (0, index_1.date)().tz("America/New_York").startOf("minute").valueOf();
             let time2 = moment.tz("America/New_York").startOf("minute").valueOf();
             time.should.be.eq(time2);
-            let timeFormat = index_1.date().tz("Etc/GMT-12").startOf("minute").format();
+            let timeFormat = (0, index_1.date)().tz("Etc/GMT-12").startOf("minute").format();
             let time2Format = moment.tz("Etc/GMT-12").startOf("minute").format();
             timeFormat.should.be.eq(time2Format);
         });
         it("should get time with zone", async () => {
-            let time = index_1.date().tsZone("Africa/Cairo").utcOffset() / 60;
+            let time = (0, index_1.date)().tsZone("Africa/Cairo").utcOffset() / 60;
             let time2 = moment.tz.zone("Africa/Cairo").utcOffset(moment().unix()) / 60;
             time.should.be.eq(time2);
         });
         it("should timeZoneUnix", async () => {
-            let time = index_1.date().timeZoneUnix("America/New_York");
+            let time = (0, index_1.date)().timeZoneUnix("America/New_York");
             let mom = moment();
             let time2 = mom.unix() + moment.tz.zone("America/New_York").utcOffset(mom) * 60;
             time.should.be.eq(time2);
@@ -30,15 +30,15 @@ describe("date", function () {
             index_1.date.invertTimeZone("Etc/GMT-12").should.be.eq("Etc/GMT+12");
         });
         it("should get time add", async () => {
-            let time = index_1.date().utc().add(1, "hour").unix();
+            let time = (0, index_1.date)().utc().add(1, "hour").unix();
             let time2 = moment.utc().add(1, "hour").unix();
             time.should.be.eq(time2);
         });
     });
     describe("time utils ", function () {
         it("should get last week", function () {
-            let lastWeek = index_1.date().getLastWeek();
-            let testWeek = index_1.date().utc().diff(index_1.date().utc().subtract(1, "week").startOf("week"), "hours");
+            let lastWeek = (0, index_1.date)().getLastWeek();
+            let testWeek = (0, index_1.date)().utc().diff((0, index_1.date)().utc().subtract(1, "week").startOf("week"), "hours");
             lastWeek.should.be.eq(testWeek);
         });
     });

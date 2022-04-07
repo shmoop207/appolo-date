@@ -1,5 +1,6 @@
-export {date} from "./lib/date"
-export {Dayjs} from "dayjs"
+export {date, date as datejs} from "./lib/date"
+export {Dayjs, Dayjs as DateJs} from "dayjs"
+export {Utils} from "./lib/utils"
 
 
 
