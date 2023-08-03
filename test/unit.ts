@@ -3,7 +3,6 @@ import chai = require('chai');
 import {date} from "../index";
 import * as moment from 'moment'
 import "moment-timezone";
-import {invertTimeZone} from "dayjs";
 
 let should = chai.should();
 
